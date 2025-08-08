@@ -29,40 +29,30 @@ class Archer extends Character {
     constructor(name) {
         super(name, 80, 12, 5);
     }
-    specialAttack(enemy) {
-        const damageDealt = this.attack * 1.5;
-        enemy.health -= damageDealt;
-        return damageDealt;
-    }
 }
 
 class Warrior extends Character {
     constructor(name) {
         super(name, 100, 10, 10);
     }
-    shieldBlock() {
-        this.defense += 5;
-    }
 }
 
-class Mage extends Character {
+class Monk extends Character {
     constructor(name) {
-        super(name, 70, 15, 3);
+        super(name, 85, 11, 7);
     }
-    castSpell(enemy) {
-        const damageDealt = this.attack * 2;
+    healAttack(enemy) {
+        // Use heal.png as damage ability
+        const damageDealt = this.attack * 1.3;
         enemy.health -= damageDealt;
         return damageDealt;
     }
 }
 
-class Tamer extends Character {
+class Lancer extends Character {
     constructor(name) {
-        super(name, 90, 8, 6);
-    }
-    summonPet() {
-        // Pet logic
+        super(name, 90, 13, 6);
     }
 }
 
-export { Character, Archer, Warrior, Mage, Tamer };
+export { Character, Archer, Warrior, Monk, Lancer };

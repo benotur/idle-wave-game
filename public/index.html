@@ -12,18 +12,6 @@
 </head>
 
 <body>
-    <!-- Character Selection Modal -->
-    <div id="character-selection"
-        style="display: block; position: fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.7); z-index:1000;">
-        <div
-            style="background:#fff; margin:10% auto; padding:30px; border-radius:10px; width:300px; text-align:center;">
-            <h2>Select Your Class</h2>
-            <button class="button" onclick="selectClass('Archer')">Archer</button>
-            <button class="button" onclick="selectClass('Warrior')">Warrior</button>
-            <button class="button" onclick="selectClass('Mage')">Mage</button>
-            <button class="button" onclick="selectClass('Tamer')">Tamer</button>
-        </div>
-    </div>
     <div id="game-container">
         <header>
             <h1>Idle Wave Game</h1>
@@ -31,6 +19,7 @@
                 <span id="player-class">Class: </span>
                 <span id="player-level">Level: </span>
                 <span id="player-health">Health: </span>
+                <span id="gold">Gold: 0</span>
             </div>
         </header>
         <main>
@@ -38,7 +27,12 @@
                 <h2>Current Wave: <span id="current-wave">1</span></h2>
                 <h2>Enemies Defeated: <span id="enemies-defeated">0</span></h2>
             </div>
-            <div id="mobs-container"></div>
+            <div id="battlefield">
+                <div id="character-area">
+                    <div id="player-sprite"></div>
+                </div>
+                <div id="mob-lane"></div>
+            </div>
             <div id="boss-container" style="display: none;"></div>
         </main>
         <footer>
@@ -46,6 +40,26 @@
             <button id="upgrade-button">Upgrade Weapons</button>
         </footer>
     </div>
+    <div id="inventory-bar">
+        <div class="item-slot" id="item-slot-1"></div>
+        <div class="item-slot" id="item-slot-2"></div>
+        <div class="item-slot" id="item-slot-3"></div>
+        <div class="item-slot" id="item-slot-4"></div>
+    </div>
+    <nav id="bottom-nav">
+        <button class="nav-btn" onclick="selectClass('Archer')">
+            <img src="assets/Archer/archer_idle.png" alt="Archer" class="class-sprite">Archer
+        </button>
+        <button class="nav-btn" onclick="selectClass('Lancer')">
+            <img src="assets/Lancer/lancer_idle.png" alt="Lancer" class="class-sprite">Lancer
+        </button>
+        <button class="nav-btn" onclick="selectClass('Monk')">
+            <img src="assets/Monk/monk_idle.png" alt="Monk" class="class-sprite">Monk
+        </button>
+        <button class="nav-btn" onclick="selectClass('Warrior')">
+            <img src="assets/Warrior/warrior_idle.png" alt="Warrior" class="class-sprite">Warrior
+        </button>
+    </nav>
     <script type="module" src="scripts/firebase.js"></script>
     <script type="module" src="scripts/classes.js"></script>
     <script type="module" src="scripts/mobs.js"></script>

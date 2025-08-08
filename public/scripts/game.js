@@ -13,7 +13,7 @@ const mobsPerWave = 5;
 const totalWaves = 5;
 
 // --- CHARACTER SELECTION ---
-window.selectClass = function(className) {
+function selectClass(className) {
     const name = prompt("Enter your character's name:");
     switch (className) {
         case 'Archer': player = new Archer(name); break;
@@ -24,7 +24,8 @@ window.selectClass = function(className) {
     document.getElementById('character-selection').style.display = 'none';
     updatePlayerInfo();
     startWave();
-};
+}
+window.selectClass = selectClass;
 
 // --- GAME LOOP ---
 function startWave() {
@@ -35,9 +36,8 @@ function startWave() {
     document.getElementById('enemies-defeated').textContent = enemiesDefeated;
     document.getElementById('boss-container').style.display = 'none';
     document.getElementById('mobs-container').innerHTML = '';
-    // Spawn mobs
     for (let i = 0; i < mobsPerWave; i++) {
-        const mobType = Object.values(mobs)[Math.floor(Math.random() * 3)]; // random normal mob
+        const mobType = Object.values(mobs)[Math.floor(Math.random() * 3)];
         const mob = new Mob(mobType.name, mobType.health, mobType.damage, mobType.speed);
         mobsInWave.push(mob);
         addMobToUI(mob, i);
@@ -118,23 +118,19 @@ function endGame() {
     `;
 }
 
-// --- PLAYER INFO UI ---
 function updatePlayerInfo() {
     document.getElementById('player-class').textContent = `Class: ${player.constructor.name}`;
     document.getElementById('player-level').textContent = `Level: ${player.level}`;
     document.getElementById('player-health').textContent = `Health: ${player.health}`;
 }
 
-// --- ITEM RESEARCH & UPGRADE ---
 document.getElementById('research-button').onclick = function() {
-    // Randomly research an item
     const rarities = ['common', 'rare', 'epic'];
     const rarity = rarities[Math.floor(Math.random() * rarities.length)];
     const itemArr = items[rarity];
     const item = itemArr[Math.floor(Math.random() * itemArr.length)];
     researchedItems.push(item);
     alert(`Researched: ${item.name} (${item.rarity})`);
-    // Optionally, save to Firebase here
 };
 
 document.getElementById('upgrade-button').onclick = function() {
@@ -145,13 +141,10 @@ document.getElementById('upgrade-button').onclick = function() {
     const item = researchedItems[researchedItems.length - 1];
     item.upgrade();
     alert(`Upgraded: ${item.name} to level ${item.level}`);
-    // Optionally, save to Firebase here
 };
 
-// --- KEYBOARD ATTACK ---
 document.addEventListener('keydown', (event) => {
     if (event.code === 'Space') {
-        // Attack first alive mob or boss
         if (!bossActive) {
             for (let i = 0; i < mobsInWave.length; i++) {
                 if (!mobsInWave[i].isDefeated) {
@@ -168,7 +161,6 @@ document.addEventListener('keydown', (event) => {
     }
 });
 
-// --- INIT ---
 window.onload = function() {
     // Wait for character selection
 };

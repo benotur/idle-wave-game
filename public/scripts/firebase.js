@@ -1,8 +1,4 @@
-// Import Firebase (if using modules, otherwise ensure firebase is loaded via CDN in index.html)
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
-import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
-
-// Your Firebase config
+// Initialize Firebase using compat API
 const firebaseConfig = {
   apiKey: "AIzaSyAwiWR0kfMErKdDEeE9Em6v858_wLYp0LM",
   authDomain: "idle-wave-game.firebaseapp.com",
@@ -13,13 +9,12 @@ const firebaseConfig = {
   appId: "1:209695931120:web:9e8816480ba1e910136035"
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
 
 // Save player progress
 window.savePlayerProgress = function(playerId, progress) {
-  set(ref(database, 'players/' + playerId), progress)
+  db.ref('players/' + playerId).set(progress)
     .then(() => {
       console.log('Player progress saved successfully.');
     })
@@ -30,7 +25,7 @@ window.savePlayerProgress = function(playerId, progress) {
 
 // Retrieve player progress
 window.getPlayerProgress = function(playerId, callback) {
-  get(child(ref(database), 'players/' + playerId))
+  db.ref('players/' + playerId).get()
     .then((snapshot) => {
       if (snapshot.exists()) {
         callback(snapshot.val());
@@ -45,7 +40,7 @@ window.getPlayerProgress = function(playerId, callback) {
 
 // Save item research data
 window.saveItemResearch = function(playerId, itemId, researchData) {
-  set(ref(database, 'players/' + playerId + '/items/' + itemId), researchData)
+  db.ref('players/' + playerId + '/items/' + itemId).set(researchData)
     .then(() => {
       console.log('Item research data saved successfully.');
     })
@@ -56,7 +51,7 @@ window.saveItemResearch = function(playerId, itemId, researchData) {
 
 // Retrieve item research data
 window.getItemResearch = function(playerId, itemId, callback) {
-  get(child(ref(database), 'players/' + playerId + '/items/' + itemId))
+  db.ref('players/' + playerId + '/items/' + itemId).get()
     .then((snapshot) => {
       if (snapshot.exists()) {
         callback(snapshot.val());

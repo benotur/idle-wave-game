@@ -1,0 +1,25 @@
+{
+  "name": "idle-wave-game",
+  "version": "1.0.0",
+  "description": "A 2D idle game where players clear waves of mobs and upgrade their characters.",
+  "main": "public/scripts/game.js",
+  "scripts": {
+    "start": "live-server public",
+    "build": "echo 'Build step not defined yet.'"
+  },
+  "keywords": [
+    "idle",
+    "game",
+    "2D",
+    "javascript",
+    "firebase"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "firebase": "^9.0.0"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  }
+}

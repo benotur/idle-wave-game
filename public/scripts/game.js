@@ -1,5 +1,27 @@
 // This file contains the main JavaScript logic for the idle wave game.
 // It manages the game loop, wave progression, player interactions, and integrates with other game components.
+import { Archer, Warrior, Mage, Tamer } from './classes.js';
+
+function selectClass(className) {
+    let name = prompt("Enter your character's name:");
+    switch (className) {
+        case 'Archer':
+            player = new Archer(name);
+            break;
+        case 'Warrior':
+            player = new Warrior(name);
+            break;
+        case 'Mage':
+            player = new Mage(name);
+            break;
+        case 'Tamer':
+            player = new Tamer(name);
+            break;
+    }
+    document.getElementById('character-selection').style.display = 'none';
+    startGame();
+}
+
 
 let player;
 let waves = [];

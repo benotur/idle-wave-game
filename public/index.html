@@ -1,12 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Idle Wave Game</title>
     <link rel="stylesheet" href="styles/main.css">
 </head>
+
 <body>
+    <!-- Character Selection Modal -->
+    <div id="character-selection"
+        style="display: block; position: fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.7); z-index:1000;">
+        <div
+            style="background:#fff; margin:10% auto; padding:30px; border-radius:10px; width:300px; text-align:center;">
+            <h2>Select Your Class</h2>
+            <button class="button" onclick="selectClass('Archer')">Archer</button>
+            <button class="button" onclick="selectClass('Warrior')">Warrior</button>
+            <button class="button" onclick="selectClass('Mage')">Mage</button>
+            <button class="button" onclick="selectClass('Tamer')">Tamer</button>
+        </div>
+    </div>
     <div id="game-container">
         <header>
             <h1>Idle Wave Game</h1>
@@ -35,4 +49,5 @@
     <script src="scripts/items.js"></script>
     <script src="scripts/game.js"></script>
 </body>
+
 </html>

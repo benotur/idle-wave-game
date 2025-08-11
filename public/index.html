@@ -1,70 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Idle Wave Game</title>
     <link rel="stylesheet" href="styles/main.css">
-    <!-- Firebase CDN -->
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database-compat.js"></script>
 </head>
-
 <body>
+    <div id="stage-counter">
+        <h2><span id="current-wave">Normal 1-1</span></h2>
+    </div>
     <div id="game-container">
         <header>
             <h1>Idle Wave Game</h1>
             <div id="player-info">
-                <span id="player-class">Class: </span>
-                <span id="player-level">Level: </span>
-                <span id="player-health">Health: </span>
+                <div id="level-bar">
+                    <span id="level-label">1 (0/50)</span>
+                    <div id="level-bar-bg">
+                        <div id="level-bar-fill"></div>
+                    </div>
+                </div>
                 <span id="gold">Gold: 0</span>
             </div>
         </header>
         <main>
-            <div id="wave-info">
-                <h2>Current Wave: <span id="current-wave">1</span></h2>
-                <h2>Enemies Defeated: <span id="enemies-defeated">0</span></h2>
-            </div>
             <div id="battlefield">
                 <div id="character-area">
-                    <div id="player-sprite"></div>
+                    <div class="entity-box player-box">
+                        <div class="health-bar" id="player-health-bar">
+                            <div class="health-fill" id="player-health-fill"></div>
+                        </div>
+                        <div class="entity-label">You</div>
+                    </div>
                 </div>
-                <div id="mob-lane"></div>
+                <div id="mob-area">
+                    <!-- Mobs will be added here -->
+                </div>
             </div>
-            <div id="boss-container" style="display: none;"></div>
         </main>
-        <footer>
-            <button id="research-button">Research Items</button>
-            <button id="upgrade-button">Upgrade Weapons</button>
-        </footer>
-    </div>
-    <div id="inventory-bar">
-        <div class="item-slot" id="item-slot-1"></div>
-        <div class="item-slot" id="item-slot-2"></div>
-        <div class="item-slot" id="item-slot-3"></div>
-        <div class="item-slot" id="item-slot-4"></div>
+        <footer></footer>
     </div>
     <nav id="bottom-nav">
-        <button class="nav-btn" onclick="selectClass('Archer')">
-            <img src="assets/Archer/archer_idle.png" alt="Archer" class="class-sprite">Archer
-        </button>
-        <button class="nav-btn" onclick="selectClass('Lancer')">
-            <img src="assets/Lancer/lancer_idle.png" alt="Lancer" class="class-sprite">Lancer
-        </button>
-        <button class="nav-btn" onclick="selectClass('Monk')">
-            <img src="assets/Monk/monk_idle.png" alt="Monk" class="class-sprite">Monk
-        </button>
-        <button class="nav-btn" onclick="selectClass('Warrior')">
-            <img src="assets/Warrior/warrior_idle.png" alt="Warrior" class="class-sprite">Warrior
-        </button>
+        <button class="nav-btn" onclick="selectClass('Archer')">Archer</button>
+        <button class="nav-btn" onclick="selectClass('Lancer')">Lancer</button>
+        <button class="nav-btn" onclick="selectClass('Monk')">Monk</button>
+        <button class="nav-btn" onclick="selectClass('Warrior')">Warrior</button>
     </nav>
-    <script type="module" src="scripts/firebase.js"></script>
-    <script type="module" src="scripts/classes.js"></script>
-    <script type="module" src="scripts/mobs.js"></script>
-    <script type="module" src="scripts/items.js"></script>
     <script type="module" src="scripts/game.js"></script>
 </body>
-
 </html>
